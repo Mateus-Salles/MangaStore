@@ -1,0 +1,208 @@
+object frmCadastro: TfrmCadastro
+  Left = 327
+  Top = 166
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Usu'#225'rio'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesigned
+  OnClose = FormClose
+  TextHeight = 21
+  object pnlFundo: TPanel
+    Left = 0
+    Top = 0
+    Width = 624
+    Height = 441
+    Align = alClient
+    Color = 2827555
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitLeft = -8
+    ExplicitTop = 24
+    object lbNome: TLabel
+      Left = 152
+      Top = 62
+      Width = 46
+      Height = 21
+      Caption = 'Nome:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15527148
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbTelefone: TLabel
+      Left = 146
+      Top = 100
+      Width = 60
+      Height = 21
+      Caption = 'Telefone:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15527148
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbEndereco: TLabel
+      Left = 73
+      Top = 301
+      Width = 67
+      Height = 21
+      Caption = 'Endere'#231'o:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15527148
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbEmail: TLabel
+      Left = 24
+      Top = 223
+      Width = 41
+      Height = 21
+      Caption = 'Email:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15527148
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbSenha: TLabel
+      Left = 361
+      Top = 223
+      Width = 46
+      Height = 21
+      Caption = 'Senha:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15527148
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object pnlImage: TPanel
+      Left = 24
+      Top = 20
+      Width = 106
+      Height = 106
+      TabOrder = 0
+      object Image1: TImage
+        Left = 1
+        Top = 1
+        Width = 104
+        Height = 104
+        Align = alClient
+        ExplicitLeft = -39
+        ExplicitTop = -23
+      end
+    end
+    object txtNome: TEdit
+      Left = 204
+      Top = 62
+      Width = 357
+      Height = 29
+      TabOrder = 1
+    end
+    object pnlProximo: TPanel
+      Left = 144
+      Top = 376
+      Width = 121
+      Height = 41
+      BevelOuter = bvNone
+      Color = 2193140
+      ParentBackground = False
+      TabOrder = 2
+      OnClick = pnlProximoClick
+      object btnProximo: TSpeedButton
+        Left = 0
+        Top = 0
+        Width = 121
+        Height = 41
+        Align = alClient
+        Caption = 'Pr'#243'ximo'
+        Flat = True
+        ExplicitLeft = 16
+        ExplicitTop = 8
+        ExplicitWidth = 47
+        ExplicitHeight = 30
+      end
+    end
+    object pnlVoltar: TPanel
+      Left = 312
+      Top = 376
+      Width = 121
+      Height = 41
+      BevelOuter = bvNone
+      Color = 2193140
+      ParentBackground = False
+      TabOrder = 3
+      OnClick = pnlVoltarClick
+      object btnVoltar: TSpeedButton
+        Left = 0
+        Top = 0
+        Width = 121
+        Height = 41
+        Align = alClient
+        Caption = 'Voltar'
+        Flat = True
+        ExplicitLeft = 48
+        ExplicitTop = 8
+        ExplicitWidth = 23
+        ExplicitHeight = 22
+      end
+    end
+    object txtEndereco: TEdit
+      Left = 146
+      Top = 298
+      Width = 384
+      Height = 29
+      TabOrder = 4
+    end
+    object txtTelefone: TMaskEdit
+      Left = 212
+      Top = 97
+      Width = 125
+      Height = 29
+      EditMask = '(00) 00000-0000;1;_'
+      MaxLength = 15
+      TabOrder = 5
+      Text = '(  )      -    '
+    end
+    object txtEmail: TEdit
+      Left = 71
+      Top = 220
+      Width = 250
+      Height = 29
+      TabOrder = 6
+    end
+    object txtSenha: TEdit
+      Left = 413
+      Top = 220
+      Width = 172
+      Height = 29
+      TabOrder = 7
+    end
+    object btnCarImage: TPanel
+      Left = 25
+      Top = 147
+      Width = 105
+      Height = 38
+      Caption = 'Carregar'
+      TabOrder = 8
+    end
+  end
+  object oPD: TOpenDialog
+    Left = 576
+    Top = 8
+  end
+end

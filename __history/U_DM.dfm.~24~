@@ -1,0 +1,210 @@
+object DM: TDM
+  OnCreate = DataModuleCreate
+  Height = 395
+  Width = 391
+  object driver: TFDPhysMySQLDriverLink
+    VendorLib = 'C:\Users\casa\Documents\SistemaGen'#233'rico\lib\libmySQL.dll'
+    Left = 8
+    Top = 8
+  end
+  object conexao: TFDConnection
+    Params.Strings = (
+      'User_Name=root'
+      'Database=mangastore'
+      'DriverID=MySQL')
+    Connected = True
+    Left = 64
+    Top = 8
+  end
+  object sqlManga: TFDQuery
+    Active = True
+    Connection = conexao
+    SQL.Strings = (
+      'select * from mangas;')
+    Left = 320
+    Top = 160
+  end
+  object sqlCliente: TFDQuery
+    Active = True
+    Connection = conexao
+    SQL.Strings = (
+      'select * from cliente;')
+    Left = 320
+    Top = 8
+    object sqlClienteid_cliente: TFDAutoIncField
+      FieldName = 'id_cliente'
+      Origin = 'id_cliente'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object sqlClientenome: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object sqlClienteendereco: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 50
+    end
+    object sqlClienteemail: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 50
+    end
+    object sqlClientetelefone: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Size = 15
+    end
+    object sqlClientesenha: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 8000
+    end
+  end
+  object sqlPedido: TFDQuery
+    Active = True
+    Connection = conexao
+    SQL.Strings = (
+      'select * from pedido;')
+    Left = 320
+    Top = 224
+  end
+  object dsClient: TDataSource
+    DataSet = sqlCliente
+    Left = 319
+    Top = 72
+  end
+  object tbCliente: TFDTable
+    Active = True
+    IndexFieldNames = 'id_cliente'
+    Connection = conexao
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'cliente'
+    Left = 128
+    Top = 8
+    object tbClienteid_cliente: TFDAutoIncField
+      FieldName = 'id_cliente'
+      Origin = 'id_cliente'
+      ReadOnly = True
+    end
+    object tbClientenome: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object tbClienteendereco: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 50
+    end
+    object tbClienteemail: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 50
+    end
+    object tbClientetelefone: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Size = 15
+    end
+    object tbClientesenha: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 8000
+    end
+  end
+  object dsCliente: TDataSource
+    DataSet = tbCliente
+    Left = 128
+    Top = 72
+  end
+  object dsManga: TDataSource
+    DataSet = tbManga
+    Left = 192
+    Top = 72
+  end
+  object tbManga: TFDTable
+    Active = True
+    IndexFieldNames = 'id_manga'
+    Connection = conexao
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'mangas'
+    Left = 192
+    Top = 8
+    object tbMangaid_manga: TFDAutoIncField
+      FieldName = 'id_manga'
+      Origin = 'id_manga'
+      ReadOnly = True
+    end
+    object tbMangatitulo: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'titulo'
+      Origin = 'titulo'
+      Size = 50
+    end
+    object tbMangaautor: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'autor'
+      Origin = 'autor'
+      Size = 50
+    end
+    object tbMangagenero: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'genero'
+      Origin = 'genero'
+      FixedChar = True
+      Size = 17
+    end
+    object tbMangaeditora: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'editora'
+      Origin = 'editora'
+      Size = 30
+    end
+    object tbMangaano_publi: TWordField
+      AutoGenerateValue = arDefault
+      FieldName = 'ano_publi'
+      Origin = 'ano_publi'
+    end
+    object tbMangapreco: TSingleField
+      AutoGenerateValue = arDefault
+      FieldName = 'preco'
+      Origin = 'preco'
+    end
+    object tbMangaestoque: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'estoque'
+      Origin = 'estoque'
+    end
+    object tbMangadata_cadastro: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'data_cadastro'
+      Origin = 'data_cadastro'
+    end
+  end
+  object tbPedido: TFDTable
+    Active = True
+    IndexFieldNames = 'id_pedido'
+    Connection = conexao
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'pedido'
+    Left = 256
+    Top = 8
+  end
+  object dsPedido: TDataSource
+    DataSet = tbPedido
+    Left = 256
+    Top = 72
+  end
+end

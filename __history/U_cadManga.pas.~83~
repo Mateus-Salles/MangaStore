@@ -1,0 +1,232 @@
+unit U_cadManga;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.DBCtrls, Vcl.ExtCtrls, U_DM, System.DateUtils,
+  U_func, Vcl.ComCtrls, Vcl.Mask, Data.SqlTimSt;
+
+type
+  TfrmCadManga = class(TForm)
+    lbGenero: TLabel;
+    txtAutor: TEdit;
+    lbCadAutor: TLabel;
+    txtNome: TEdit;
+    lbCadTitulo: TLabel;
+    Panel1: TPanel;
+    pnlImage: TPanel;
+    Image1: TImage;
+    btnCarregar: TPanel;
+    openD: TOpenDialog;
+    lbEditora: TLabel;
+    txtEditora: TEdit;
+    lbAnoPub: TLabel;
+    lbPreco: TLabel;
+    lbEstoque: TLabel;
+    txtEstoque: TEdit;
+    btnEnviar: TPanel;
+    btnLimpar: TPanel;
+    btnCancel: TPanel;
+    txtGenero: TEdit;
+    txtAnoPubli: TMaskEdit;
+    txtPreco: TEdit;
+    btnEsc: TButton;
+    procedure btnCarregarClick(Sender: TObject);
+    procedure btnEnviarClick(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure txtPrecoChange(Sender: TObject);
+    procedure txtPrecoKeyPress(Sender: TObject; var Key: Char);
+    procedure btnEscClick(Sender: TObject);
+    procedure btnLimparClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadManga: TfrmCadManga;
+
+implementation
+
+{$R *.dfm}
+
+uses U_home, U_gen;
+
+procedure TfrmCadManga.btnCancelClick(Sender: TObject);
+begin
+  frmCadManga.Close;
+  frmHome.Show;
+end;
+
+procedure TfrmCadManga.btnCarregarClick(Sender: TObject);
+begin
+  resizeImage(Image1, 104, 104, openD, false);
+end;
+
+procedure TfrmCadManga.btnEnviarClick(Sender: TObject);
+var
+  id, I, C: integer;
+  nomeManga, txt: string;
+  ar: array[1..9] of string;
+begin
+  ar[1] := '\';
+  ar[2] := '/';
+  ar[3] := '*';
+  ar[4] := ':';
+  ar[5] := '>';
+  ar[6] := '<';
+  ar[7] := '"';
+  ar[8] := '?';
+  ar[9] := '|';
+
+  if not Assigned(Image1.Picture.Graphic) then
+  begin
+    ShowMessage('Imagem em branco');
+    Exit;
+  end;
+
+  var J: integer;
+  for J := 0 to ComponentCount -1 do
+  begin
+    if (Components[J] is TEdit) or (Components[J] is TMaskEdit) then
+    begin
+      if (TEdit(Components[J]).Text = '') or (TMaskEdit(Components[J]).Text = '') then
+      begin
+        ShowMessage('Preencha todos os campos');
+        Exit;
+      end;
+    end;
+  end;
+
+  if Copy(txtPreco.Text, 3, Length(txtPreco.Text)-2) = '' then
+  begin
+    ShowMessage('Preencha todos os campos');
+  end;
+
+  try
+    txt := Copy(txtPreco.Text, 3, Length(txtPreco.Text)-2);
+
+    DM.sqlManga.SQL.Text := 'INSERT INTO mangas(titulo, autor, genero, editora, preco, estoque, data_cadastro, ano_publi)';
+    DM.sqlManga.SQL.Add('VALUES (:nome, :autor, :genero, :editora, :preco, :estoque, :dataCad, :dataPubli)');
+    with DM.sqlManga.Params do
+    begin
+      ParamByName('nome').AsString := txtNome.Text;
+      ParamByName('autor').AsString := txtAutor.Text;
+      ParamByName('genero').AsString := txtGenero.Text;
+      ParamByName('editora').AsString := txtEditora.Text;
+      ParamByName('preco').AsFloat := StrToFloat(txt);
+      ParamByName('estoque').AsInteger := StrToInt(txtEstoque.Text);
+      ParamByName('dataCad').AsDate := Now;
+      ParamByName('dataPubli').AsInteger := StrToInt(txtAnoPubli.Text);
+    end;
+    DM.sqlManga.ExecSQL;
+  Except
+    ShowMessage('Houve um erro');
+  end;
+
+  DM.sqlManga.SQL.Text := 'SELECT MAX(id_manga) FROM mangas';
+  DM.sqlManga.Open;
+  id := DM.sqlManga.FieldByName('MAX(id_manga)').AsInteger;
+
+  try
+    DM.sqlManga.SQL.Text := 'select titulo from mangas where id_manga=:id';
+    DM.sqlManga.Params.ParamByName('id').AsInteger := id;
+    DM.sqlManga.Open;
+
+    var texto: string;
+    texto := '';
+    for I := 1 to Length(DM.sqlManga.FieldByName('titulo').AsString) do
+    begin
+      for C := 1 to 10 do
+      begin
+        if C = 10 then break;
+        if (DM.sqlManga.FieldByName('titulo').AsString[I] = ar[C]) then break;
+      end;
+
+      if C = 10 then texto := texto + DM.sqlManga.FieldByName('titulo').AsString[I];
+
+    end;
+
+    if (RenameFile(GetDiretorio() + 'imagens\manga\almuarte.JPG', GetDiretorio() + 'imagens\manga\' + IntToStr(id) + texto + '.jpg')) then
+    begin
+      ShowMessage('Cadastro realizado com sucesso');
+    end;
+  Except
+    ShowMessage('Erro')
+  end;
+
+  DM.sqlManga.SQL.Text := 'select * from mangas';
+
+  frmHome.Free;
+  frmHome.Create(Application);
+  frmHome.Show;
+end;
+
+procedure TfrmCadManga.btnEscClick(Sender: TObject);
+begin
+  frmGen.ShowModal;
+end;
+
+procedure TfrmCadManga.btnLimparClick(Sender: TObject);
+var
+  I: integer;
+begin
+  Image1.Picture := nil;
+
+  for I := 0 to ComponentCount -1 do
+  begin
+    if (Components[I] is TEdit) then
+    begin
+      if TEdit(Components[I]).Name = 'txtPreco' then txtPreco.Text := 'R$'
+      else TEdit(Components[I]).Text := '';
+    end;
+  end;
+end;
+
+procedure TfrmCadManga.txtPrecoChange(Sender: TObject);
+var
+  rep: string;
+begin
+  rep := '';
+
+  if Copy(txtPreco.Text, 1, 2) <> 'R$' then
+  begin
+    if (Copy(txtPreco.Text, 1, 1) <> 'R') and (Copy(txtPreco.Text, 2, 1) <> '$') and (Copy(txtPreco.Text, 1, 1) <> '$') then
+    begin
+      rep := 'R$' + txtPreco.Text;
+      txtPreco.Text := rep;
+      txtPreco.SelStart := 2;
+    end
+    else if (Copy(txtPreco.Text, 2, 1) <> '$') then
+    begin
+      rep := txtPreco.Text;
+      Delete(rep, 1, 1);
+      txtPreco.Text := 'R$'+rep;
+      txtPreco.SelStart := 2;
+    end
+    else if (Copy(txtPreco.Text, 1, 1) <> 'R') then
+    begin
+      rep := 'R'+txtPreco.Text;
+      txtPreco.Text := rep;
+      rep := txtPreco.Text;
+      Delete(rep, 2, 1);
+      txtPreco.Text := rep;
+      txtPreco.SelStart := 2;
+    end;
+
+  end;
+
+end;
+
+procedure TfrmCadManga.txtPrecoKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in ['0'..'9', #8, ',']) then
+  begin
+    Key := #0;
+  end;
+
+end;
+
+end.

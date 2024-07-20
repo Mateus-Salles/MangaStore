@@ -1,0 +1,722 @@
+unit U_home;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Imaging.pngimage,
+  Vcl.StdCtrls, Vcl.Buttons, U_func, U_DM, U_log;
+
+procedure colorBlock(Panel: TPanel);
+procedure apagar();
+procedure loadManga;
+
+function renameImage():string;
+
+type
+  TfrmHome = class(TForm)
+    pnlUsua: TPanel;
+    pnlImagem: TPanel;
+    imgPerfil: TImage;
+    lbNome: TLabel;
+    pnlLogo: TPanel;
+    pnlNav: TPanel;
+    pnlNavegacao: TPanel;
+    Panel2: TPanel;
+    pnlBarra: TPanel;
+    btnPopulares: TPanel;
+    btnNovidades: TPanel;
+    btnAz: TPanel;
+    pnlLogin: TPanel;
+    screen: TScrollBox;
+    pnlPop: TPanel;
+    lbPopulares: TLabel;
+    pnlOpUsua: TPanel;
+    pnlEdit: TPanel;
+    pnlAdManga: TPanel;
+    pnlLogOut: TPanel;
+    Label1: TLabel;
+    Panel3: TPanel;
+    lbGenero: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    procedure pnlNavMouseEnter(Sender: TObject);
+    procedure pnlNavMouseLeave(Sender: TObject);
+    procedure pnlLogoMouseEnter(Sender: TObject);
+    procedure pnlLogoMouseLeave(Sender: TObject);
+    procedure pnlUsuaMouseEnter(Sender: TObject);
+    procedure pnlUsuaMouseLeave(Sender: TObject);
+    procedure lbNomeMouseEnter(Sender: TObject);
+    procedure imgPerfilMouseEnter(Sender: TObject);
+    procedure imgPerfilMouseLeave(Sender: TObject);
+    procedure pnlNavClick(Sender: TObject);
+    procedure btnPopularesMouseEnter(Sender: TObject);
+    procedure btnPopularesMouseLeave(Sender: TObject);
+    procedure btnNovidadesMouseEnter(Sender: TObject);
+    procedure btnNovidadesMouseLeave(Sender: TObject);
+    procedure btnAzMouseEnter(Sender: TObject);
+    procedure btnAzMouseLeave(Sender: TObject);
+    procedure pnlLoginMouseEnter(Sender: TObject);
+    procedure openUsua;
+    procedure pnlLoginMouseLeave(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure pnlLoginClick(Sender: TObject);
+    procedure showManga(num: integer; a: boolean);
+    procedure btnNovidadesClick(Sender: TObject);
+    procedure btnPopularesClick(Sender: TObject);
+    procedure showNav;
+    procedure screenMouseWheelDown(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: Boolean);
+    procedure screenMouseWheelUp(Sender: TObject; Shift: TShiftState;
+      MousePos: TPoint; var Handled: Boolean);
+    procedure FormActivate(Sender: TObject);
+    procedure imgPerfilClick(Sender: TObject);
+    procedure pnlUsuaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure pnlImagemMouseEnter(Sender: TObject);
+    procedure pnlImagemMouseLeave(Sender: TObject);
+    procedure lbNomeClick(Sender: TObject);
+    procedure pnlEditMouseEnter(Sender: TObject);
+    procedure pnlEditMouseLeave(Sender: TObject);
+    procedure pnlAdMangaMouseEnter(Sender: TObject);
+    procedure pnlAdMangaMouseLeave(Sender: TObject);
+    procedure pnlLogOutMouseEnter(Sender: TObject);
+    procedure pnlLogOutMouseLeave(Sender: TObject);
+    procedure pnlLogOutClick(Sender: TObject);
+    procedure pnlAdMangaClick(Sender: TObject);
+    procedure Label1MouseEnter(Sender: TObject);
+    procedure Label1MouseLeave(Sender: TObject);
+    procedure compraManga(Sender: TObject);
+    procedure FormDeactivate(Sender: TObject);
+    procedure pnlEditClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    idUsua: integer;
+    diret: string;
+  end;
+
+var
+  frmHome: TfrmHome;
+  navC, logado: boolean;
+  ar: array[1..9] of string;
+  tag, po: integer;
+  id: array of integer;
+  nami: array of string;
+
+implementation
+
+{$R *.dfm}
+
+uses U_cadManga, U_cad, U_compra, U_clienteEdit;
+
+procedure loadManga;
+var
+  I: integer;
+begin
+
+  SetLength(id, 0);
+
+  DM.sqlManga.SQL.Text := 'select * from mangas';
+  DM.sqlManga.Open;
+
+  for I := 0 to DM.sqlManga.RecordCount -1 do
+  begin
+    if not (Length(id) = DM.sqlManga.RecordCount) then
+    begin
+      SetLength(id, Length(id)+1);
+      SetLength(nami, Length(nami)+1);
+      id[I] := DM.sqlManga.FieldByName('id_manga').AsInteger;
+      nami[I] := DM.sqlManga.FieldByName('titulo').AsString;
+      DM.sqlManga.Next;
+    end;
+  end;
+end;
+
+procedure apagar();
+var
+  I: integer;
+  comp: TComponent;
+begin
+  for I := frmHome.screen.ControlCount -1 Downto 0 do
+  begin
+    comp := frmHome.screen.Controls[I];
+
+    if not (comp.Name = 'pnlPop') then
+    begin
+      comp.Free;
+    end;
+  end;
+end;
+
+procedure TfrmHome.compraManga(Sender: TObject);
+var
+  Componente: TPanel;
+  c: integer;
+begin
+  Componente := Sender as TPanel;
+
+  with DM.sqlManga do
+  begin
+    SQL.Text := 'SELECT * FROM mangas WHERE id_manga = :idM';
+    ParamByName('idM').AsInteger := id[Componente.Tag];
+    Open;
+
+    frmCompra.id := FieldByName('id_manga').AsString;
+    frmCompra.nomeImg := FieldByName('titulo').AsString;
+    frmCompra.preco := FieldByName('preco').AsString;
+    frmCompra.autor := FieldByName('autor').AsString;
+    frmCompra.gens := FieldByName('genero').AsString;
+    frmCompra.estoque := FieldByName('estoque').AsString;
+    frmCompra.editora := FieldByName('editora').AsString;
+    frmCompra.ano := FieldByName('ano_publi').AsString;
+  end;
+
+  frmCompra.ShowModal;
+end;
+
+function renameImage():string;
+var
+  texto: string;
+  j, o: integer;
+begin
+  texto := '';
+
+  for j := 1 to Length(DM.sqlManga.FieldByName('titulo').AsString) do
+  begin
+    for o := 1 to 10 do
+    begin
+      if o = 10 then break;
+      if (DM.sqlManga.FieldByName('titulo').AsString[j] = ar[o]) then break;
+    end;
+
+    if o = 10 then texto := texto + DM.sqlManga.FieldByName('titulo').AsString[j];
+
+  end;
+
+  Result := texto;
+end;
+
+procedure TfrmHome.openUsua;
+begin
+  pnlOpUsua.Visible := not pnlOpUsua.Visible;
+end;
+
+procedure colorBlock(Panel: TPanel);
+begin
+  if Panel.Color = $2b2523 then
+  begin
+    Panel.Color := $000000;
+    Panel.Font.Color := $ffffff;
+  end
+  else
+  begin
+    Panel.Color := $2b2523;
+    Panel.Font.Color := $dadada;
+  end;
+end;
+
+procedure TfrmHome.btnAzMouseEnter(Sender: TObject);
+begin
+  btnAz.Color := $2b2523;
+end;
+
+procedure TfrmHome.btnAzMouseLeave(Sender: TObject);
+begin
+  btnAz.Color := $000000;
+end;
+
+procedure TfrmHome.btnNovidadesClick(Sender: TObject);
+begin
+  screen.VertScrollBar.Position := 307;
+  showNav();
+  colorBlock(pnlNav);
+end;
+
+procedure TfrmHome.btnNovidadesMouseEnter(Sender: TObject);
+begin
+  btnNovidades.Color := $2b2523;
+end;
+
+procedure TfrmHome.btnNovidadesMouseLeave(Sender: TObject);
+begin
+  btnNovidades.Color := $000000;
+end;
+
+procedure TfrmHome.btnPopularesClick(Sender: TObject);
+begin
+  screen.VertScrollBar.Position := 0;
+  showNav();
+  colorBlock(pnlNav);
+end;
+
+procedure TfrmHome.btnPopularesMouseEnter(Sender: TObject);
+begin
+  btnPopulares.Color := $2b2523;
+end;
+
+procedure TfrmHome.btnPopularesMouseLeave(Sender: TObject);
+begin
+  btnPopulares.Color := $000000;
+end;
+
+procedure TfrmHome.FormActivate(Sender: TObject);
+var
+  pnlNov, pnlRodpe: TPanel;
+  lbNov: TLabel;
+begin
+  po := 0;
+
+  if logado then
+  begin
+    pnlLogin.Visible := false;
+    pnlUsua.Visible := true;
+  end;
+
+  apagar();
+
+  loadManga;
+
+  showManga(60, false);
+
+  //Painel NOVIDADE
+  pnlNov := TPanel.Create(self);
+  pnlNov.Parent := screen;
+  pnlNov.Width := 664;
+  pnlNov.Height := 57;
+  pnlNov.Left := 0;
+  pnlNov.BevelOuter := bvNone;
+  pnlNov.Top := 250 + 60 + 30;
+
+  lbNov := TLabel.Create(self);
+  lbNov.Parent := pnlNov;
+  lbNov.Left := 16;
+  lbNov.Layout := tlCenter;
+  lbNov.Font.Style := [fsBold];
+  lbNov.Font.Size := 18;
+  lbNov.Caption := 'Recentes';
+
+  showManga(397, true);
+
+  pnlRodpe := TPanel.Create(self);
+  pnlRodpe.Parent := screen;
+  pnlRodpe.Height := 40;
+  pnlRodpe.Align := alBottom;
+  pnlRodpe.BevelOuter := bvNone;
+
+end;
+
+procedure TfrmHome.FormCreate(Sender: TObject);
+begin
+  logado := false;
+  Application.CreateForm(TDM, DM);
+
+  navC := False;
+end;
+
+procedure TfrmHome.FormDeactivate(Sender: TObject);
+begin
+  apagar();
+end;
+
+procedure TfrmHome.FormShow(Sender: TObject);
+var
+  I: integer;
+begin
+  frmHome.Activate;
+
+  ar[1] := '\';
+  ar[2] := '/';
+  ar[3] := '*';
+  ar[4] := ':';
+  ar[5] := '>';
+  ar[6] := '<';
+  ar[7] := '"';
+  ar[8] := '?';
+  ar[9] := '|';
+
+  if logado then
+  begin
+    pnlLogin.Visible := false;
+    pnlUsua.Visible := true;
+  end
+  else
+  begin
+    pnlLogin.Visible := true;
+    pnlUsua.Visible := false;
+  end;
+
+  apagar();
+
+  loadManga;
+
+end;
+
+procedure TfrmHome.imgPerfilClick(Sender: TObject);
+begin
+  if pnlNavegacao.Visible then
+  begin
+    showNav;
+    colorBlock(pnlNav);
+  end;
+  openUsua;
+end;
+
+procedure TfrmHome.imgPerfilMouseEnter(Sender: TObject);
+begin
+  pnlUsua.Color := $000000;
+  lbNome.Font.Color := $ffffff;
+end;
+
+procedure TfrmHome.imgPerfilMouseLeave(Sender: TObject);
+begin
+  if not (pnlOpUsua.Visible) then
+  begin
+    pnlUsua.Color := $2b2523;
+    lbNome.Font.Color := $dadada;
+  end;
+end;
+
+procedure TfrmHome.Label1MouseEnter(Sender: TObject);
+begin
+  pnlLogo.Color := $000000;
+  pnlLogo.Font.Color := $ffffff;
+end;
+
+procedure TfrmHome.Label1MouseLeave(Sender: TObject);
+begin
+  pnlLogo.Color := $2b2523;
+  pnlLogo.Font.Color := $dadada;
+end;
+
+procedure TfrmHome.lbNomeClick(Sender: TObject);
+begin
+  if pnlNavegacao.Visible then
+  begin
+    showNav;
+    colorBlock(pnlNav);
+  end;
+  openUsua;
+end;
+
+procedure TfrmHome.lbNomeMouseEnter(Sender: TObject);
+begin
+  pnlUsua.Color := $000000;
+  lbNome.Font.Color := $ffffff;
+end;
+
+procedure TfrmHome.pnlAdMangaClick(Sender: TObject);
+begin
+  frmCadManga.ShowModal;
+end;
+
+procedure TfrmHome.pnlAdMangaMouseEnter(Sender: TObject);
+begin
+  pnlAdManga.Color := $2b2523;
+end;
+
+procedure TfrmHome.pnlAdMangaMouseLeave(Sender: TObject);
+begin
+  pnlAdManga.Color := $000000;
+end;
+
+procedure TfrmHome.pnlEditClick(Sender: TObject);
+begin
+  frmEditCliente.ShowModal;
+end;
+
+procedure TfrmHome.pnlEditMouseEnter(Sender: TObject);
+begin
+  pnlEdit.Color := $2b2523;
+end;
+
+procedure TfrmHome.pnlEditMouseLeave(Sender: TObject);
+begin
+  pnlEdit.Color := $000000;
+end;
+
+procedure TfrmHome.pnlImagemMouseEnter(Sender: TObject);
+begin
+  pnlUsua.Color := $000000;
+  lbNome.Font.Color := $ffffff;
+end;
+
+procedure TfrmHome.pnlImagemMouseLeave(Sender: TObject);
+begin
+  if not (pnlOpUsua.Visible) then
+  begin
+    pnlUsua.Color := $2b2523;
+    lbNome.Font.Color := $dadada;
+  end;
+end;
+
+procedure TfrmHome.pnlLoginClick(Sender: TObject);
+begin
+  frmLogin.ShowModal;
+end;
+
+procedure TfrmHome.pnlLoginMouseEnter(Sender: TObject);
+begin
+  colorBlock(pnlLogin);
+end;
+
+procedure TfrmHome.pnlLoginMouseLeave(Sender: TObject);
+begin
+  colorBlock(pnlLogin);
+end;
+
+procedure TfrmHome.pnlLogoMouseEnter(Sender: TObject);
+begin
+  pnlLogo.Color := $000000;
+  pnlLogo.Font.Color := $ffffff;
+end;
+
+procedure TfrmHome.pnlLogoMouseLeave(Sender: TObject);
+begin
+  pnlLogo.Color := $2b2523;
+  pnlLogo.Font.Color := $dadada;
+end;
+
+procedure TfrmHome.pnlLogOutClick(Sender: TObject);
+begin
+  logado := false;
+  frmHome.DoShow;
+  frmHome.Activate;
+  pnlOpUsua.Visible := false;
+  DM.sqlManga.SQL.Text := 'select * from mangas';
+end;
+
+procedure TfrmHome.pnlLogOutMouseEnter(Sender: TObject);
+begin
+  pnlLogOut.Color := $2b2523;
+end;
+
+procedure TfrmHome.pnlLogOutMouseLeave(Sender: TObject);
+begin
+  pnlLogOut.Color := $000000;
+end;
+
+procedure TfrmHome.pnlNavClick(Sender: TObject);
+begin
+  showNav();
+end;
+
+procedure TfrmHome.pnlNavMouseEnter(Sender: TObject);
+begin
+  if not pnlNavegacao.Visible then
+  begin
+    colorBlock(pnlNav);
+  end;
+end;
+
+procedure TfrmHome.pnlNavMouseLeave(Sender: TObject);
+begin
+  if not navC then
+  begin
+    colorBlock(pnlNav);
+  end;
+end;
+
+procedure TfrmHome.pnlUsuaClick(Sender: TObject);
+begin
+  if pnlNavegacao.Visible then
+  begin
+    showNav;
+    colorBlock(pnlNav);
+  end;
+  openUsua;
+end;
+
+procedure TfrmHome.pnlUsuaMouseEnter(Sender: TObject);
+begin
+  pnlUsua.Color := $000000;
+  lbNome.Font.Color := $ffffff;
+end;
+
+procedure TfrmHome.pnlUsuaMouseLeave(Sender: TObject);
+begin
+  if not (pnlOpUsua.Visible) then
+  begin
+    pnlUsua.Color := $2b2523;
+    lbNome.Font.Color := $dadada;
+  end;
+end;
+
+procedure TfrmHome.screenMouseWheelDown(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+  screen.VertScrollBar.Position := screen.VertScrollBar.Position + 20;
+end;
+
+procedure TfrmHome.screenMouseWheelUp(Sender: TObject; Shift: TShiftState;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+  screen.VertScrollBar.Position := screen.VertScrollBar.Position - 20;
+end;
+
+procedure TfrmHome.showManga(num: integer; a: boolean);
+var
+  opD: TOpenDialog;
+  Painel, compra, pnlNome, preco, pnlImage, pnlInfo, pnlNov: TPanel;
+  imgManga: TImage;
+  mangaNome, lbNov: TLabel;
+  sbMangas: TScrollBox;
+  I, esq, C: integer;
+  txt: string;
+begin
+  txt := GetDiretorio();
+
+  esq := 30;
+
+  with DM do
+  begin
+    if a then
+    begin
+      sqlManga.SQL.Text := 'SELECT * FROM mangas ORDER BY data_cadastro DESC';
+    end
+    else
+    begin
+      sqlManga.SQL.Text := 'SELECT * FROM mangas';
+    end;
+    sqlManga.Open;
+
+    if tag = sqlManga.RecordCount*2 then
+    begin
+      tag := 0;
+    end;
+
+    opD := TOpenDialog.Create(self);
+
+    sbMangas := TScrollBox.Create(self);
+    sbMangas.Parent := screen;
+    sbMangas.Height := 274;
+    sbMangas.Width := 640;
+    sbMangas.BevelInner := bvNone;
+    sbMangas.BevelOuter := bvNone;
+    sbMangas.BorderStyle := bsNone;
+    sbMangas.Top := num;
+
+
+    for I := 0 to sqlManga.RecordCount -1 do
+    begin
+      Painel := TPanel.Create(self);
+      Painel.Parent := sbMangas;
+      Painel.ParentColor := False;
+      Painel.ParentBackground := False;
+      Painel.Color := $FFFFFF;
+      Painel.Width := 160;
+      Painel.Height := 250;
+      Painel.Left := esq;
+
+      //Imagem
+      pnlImage := TPanel.Create(self);
+      pnlImage.Parent := Painel;
+      pnlImage.Height := Trunc(Painel.Height * 0.6);
+      pnlImage.Width := Painel.Width;
+      pnlImage.Align := alTop;
+
+      imgManga := TImage.Create(self);
+      imgManga.Parent := pnlImage;
+      imgManga.Width := 104;
+      imgManga.Height := 104;
+      imgManga.Top := Trunc((pnlImage.Height - imgManga.Height) / 2);
+      imgManga.Left := Trunc((pnlImage.Width - imgManga.Width) / 2);
+
+      imgManga.Picture.LoadFromFile(txt + '\imagens\manga\' + sqlManga.FieldByName('id_manga').AsString + renameImage() + '.jpg');
+
+      //Nome, Preço, Compra
+      pnlInfo := TPanel.Create(self);
+      pnlInfo.Parent := Painel;
+      pnlInfo.Height := Trunc(Painel.Height * 0.4);
+      pnlInfo.Align := alBottom;
+
+      pnlNome := TPanel.Create(self);
+      pnlNome.Parent := pnlInfo;
+      pnlNome.Top := 0;
+      pnlNome.Align := alTop;
+      pnlNome.BevelOuter := bvNone;
+
+      mangaNome := TLabel.Create(self);
+      mangaNome.Parent := pnlNome;
+      mangaNome.WordWrap := True;
+      mangaNome.Align := alClient;
+      mangaNome.Alignment := taCenter;
+      mangaNome.Font.Name := 'Lagoa7';
+      mangaNome.Font.Style := [fsBold];
+      mangaNome.Font.Color := $000000;
+      mangaNome.Caption := sqlManga.FieldByName('titulo').AsString;
+
+      compra := TPanel.Create(self);
+      compra.Parent := pnlInfo;
+      compra.ParentBackground := False;
+      compra.Align := alBottom;
+      compra.Color := $2175f4;
+      compra.Width := 100;
+      compra.Height := 30;
+      compra.Caption := 'COMPRAR';
+      compra.Font.Color := $000000;
+      compra.Font.Style := [fsBold];
+      compra.Tag := tag;
+      compra.OnClick := compraManga;
+
+      preco := TPanel.Create(self);
+      preco.Parent := pnlInfo;
+      preco.ParentBackground := True;
+      preco.Height := 20;
+      preco.Width := Painel.Width;
+      preco.Top := pnlInfo.Height - 60;
+      preco.BevelOuter := bvNone;
+      preco.Font.Color := clBlack;
+      preco.Font.Size := 12;
+      preco.Caption := 'R$' + Format('%.2f', [sqlManga.FieldByName('preco').AsFloat]);
+
+      esq := esq + Painel.Width + 20;
+
+      if a then
+      begin
+        var aba: integer;
+
+        SetLength(id, Length(id)+1);
+
+        aba := sqlManga.RecordCount + I;
+
+        id[aba] := sqlManga.FieldByName('id_manga').AsInteger;
+      end;
+
+      sqlManga.Next;
+
+      tag := tag + 1;
+    end;
+  end;
+end;
+
+procedure TfrmHome.showNav;
+begin
+  if pnlOpUsua.Visible then
+  begin
+    pnlOpUsua.Visible := false;
+    pnlUsua.Color := $2b2523;
+    lbNome.Font.Color := $dadada;
+  end;
+  pnlNavegacao.Visible := not navC;
+  btnPopulares.Visible := not navC;
+  btnNovidades.Visible := not navC;
+  btnAz.Visible := not navC;
+  lbGenero.Visible := not navC;
+
+  navC := not navC;
+end;
+
+end.

@@ -1,0 +1,269 @@
+object frmCadManga: TfrmCadManga
+  Left = 327
+  Top = 166
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de Mangas'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesigned
+  TextHeight = 21
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 624
+    Height = 441
+    Align = alClient
+    Color = 2827045
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 620
+    ExplicitHeight = 440
+    object lbCadAutor: TLabel
+      Left = 32
+      Top = 219
+      Width = 42
+      Height = 21
+      Caption = 'Autor:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbCadTitulo: TLabel
+      Left = 32
+      Top = 168
+      Width = 120
+      Height = 21
+      Caption = 'Nome do Manga:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbGenero: TLabel
+      Left = 312
+      Top = 219
+      Width = 54
+      Height = 21
+      Caption = 'G'#234'nero:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbEditora: TLabel
+      Left = 32
+      Top = 267
+      Width = 52
+      Height = 21
+      Caption = 'Editora:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbAnoPub: TLabel
+      Left = 292
+      Top = 267
+      Width = 130
+      Height = 21
+      Caption = 'Ano de Publica'#231#227'o:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbPreco: TLabel
+      Left = 64
+      Top = 312
+      Width = 39
+      Height = 21
+      Caption = 'Pre'#231'o'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lbEstoque: TLabel
+      Left = 253
+      Top = 312
+      Width = 169
+      Height = 21
+      Caption = 'Quantidade em Estoque:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object txtAutor: TEdit
+      Left = 80
+      Top = 216
+      Width = 194
+      Height = 29
+      TabOrder = 1
+    end
+    object txtNome: TEdit
+      Left = 158
+      Top = 165
+      Width = 315
+      Height = 29
+      TabOrder = 0
+    end
+    object pnlImage: TPanel
+      Left = 240
+      Top = 32
+      Width = 106
+      Height = 106
+      TabOrder = 12
+      object Image1: TImage
+        Left = 1
+        Top = 1
+        Width = 104
+        Height = 104
+        Align = alClient
+        ExplicitWidth = 103
+      end
+    end
+    object btnCarregar: TPanel
+      Left = 364
+      Top = 103
+      Width = 92
+      Height = 32
+      BevelOuter = bvNone
+      Caption = 'Carregar'
+      Color = 8816262
+      ParentBackground = False
+      TabOrder = 7
+      OnClick = btnCarregarClick
+    end
+    object txtEditora: TEdit
+      Left = 90
+      Top = 264
+      Width = 163
+      Height = 29
+      TabOrder = 2
+    end
+    object txtEstoque: TEdit
+      Left = 428
+      Top = 309
+      Width = 89
+      Height = 29
+      TabOrder = 5
+    end
+    object btnEnviar: TPanel
+      Left = 48
+      Top = 384
+      Width = 129
+      Height = 41
+      BevelOuter = bvNone
+      Caption = 'Enviar'
+      Color = 2192884
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 9
+      OnClick = btnEnviarClick
+    end
+    object btnLimpar: TPanel
+      Left = 216
+      Top = 384
+      Width = 129
+      Height = 41
+      BevelOuter = bvNone
+      Caption = 'Limpar'
+      Color = 2192884
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 10
+      OnClick = btnLimparClick
+    end
+    object btnCancel: TPanel
+      Left = 376
+      Top = 384
+      Width = 129
+      Height = 41
+      BevelOuter = bvNone
+      Caption = 'Cancelar'
+      Color = 2192884
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 11
+      OnClick = btnCancelClick
+    end
+    object txtGenero: TEdit
+      Left = 376
+      Top = 216
+      Width = 129
+      Height = 29
+      Enabled = False
+      TabOrder = 8
+    end
+    object txtAnoPubli: TMaskEdit
+      Left = 432
+      Top = 264
+      Width = 41
+      Height = 29
+      EditMask = '9999;1;_'
+      MaxLength = 4
+      TabOrder = 3
+      Text = '    '
+    end
+    object txtPreco: TEdit
+      Left = 109
+      Top = 309
+      Width = 100
+      Height = 29
+      TabOrder = 4
+      Text = 'R$'
+      OnChange = txtPrecoChange
+      OnKeyPress = txtPrecoKeyPress
+    end
+    object btnEsc: TButton
+      Left = 511
+      Top = 218
+      Width = 75
+      Height = 25
+      Caption = 'Escolher'
+      TabOrder = 6
+      OnClick = btnEscClick
+    end
+  end
+  object openD: TOpenDialog
+    Left = 576
+    Top = 8
+  end
+end

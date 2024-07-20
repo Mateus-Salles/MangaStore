@@ -1,0 +1,183 @@
+object frmConfCompra: TfrmConfCompra
+  Left = 436
+  Top = 248
+  Caption = 'Confirmar Compra'
+  ClientHeight = 294
+  ClientWidth = 414
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -15
+  Font.Name = 'Segoe UI'
+  Font.Style = [fsBold]
+  Position = poDesigned
+  OnShow = FormShow
+  TextHeight = 20
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 414
+    Height = 294
+    Align = alClient
+    Color = 2827555
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 410
+    ExplicitHeight = 293
+    object lbAut: TLabel
+      Left = 119
+      Top = 71
+      Width = 127
+      Height = 15
+      Caption = 'Por Gotouge Koyoharu'
+      Color = 14342874
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbPre: TLabel
+      Left = 120
+      Top = 99
+      Width = 15
+      Height = 15
+      Caption = 'R$'
+      Color = 14342874
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbQuant: TLabel
+      Left = 8
+      Top = 136
+      Width = 64
+      Height = 15
+      Caption = 'Quantidade'
+      Color = 14342874
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbTotal: TLabel
+      Left = 95
+      Top = 222
+      Width = 19
+      Height = 20
+      Caption = 'R$'
+      Color = 14342874
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbVT: TLabel
+      Left = 8
+      Top = 222
+      Width = 75
+      Height = 20
+      Caption = 'Valor Total'
+      Color = 14342874
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object btnCancel: TPanel
+      Left = 175
+      Top = 253
+      Width = 96
+      Height = 33
+      BevelOuter = bvNone
+      Caption = 'Cancelar'
+      ParentBackground = False
+      TabOrder = 0
+      OnClick = btnCancelClick
+    end
+    object btnFinCompra: TPanel
+      Left = 8
+      Top = 253
+      Width = 145
+      Height = 33
+      BevelOuter = bvNone
+      Caption = 'Finalizar compra'
+      Color = 2192883
+      ParentBackground = False
+      TabOrder = 1
+      OnClick = btnFinCompraClick
+    end
+    object Panel1: TPanel
+      Left = 8
+      Top = 8
+      Width = 106
+      Height = 106
+      TabOrder = 2
+      object img1: TImage
+        Left = 1
+        Top = 1
+        Width = 104
+        Height = 104
+        Align = alClient
+        ExplicitHeight = 102
+      end
+    end
+    object pnlNome: TPanel
+      Left = 119
+      Top = 8
+      Width = 210
+      Height = 57
+      BevelOuter = bvNone
+      Padding.Left = 5
+      TabOrder = 3
+      object Label1: TLabel
+        Left = 5
+        Top = 0
+        Width = 205
+        Height = 57
+        Align = alClient
+        Caption = 'Label1'
+        Color = 14342874
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 14342874
+        Font.Height = -15
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Layout = tlCenter
+        WordWrap = True
+        ExplicitWidth = 46
+        ExplicitHeight = 20
+      end
+    end
+    object txtQuant: TEdit
+      Left = 78
+      Top = 129
+      Width = 57
+      Height = 28
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      TabOrder = 4
+      Text = '1'
+      OnChange = txtQuantChange
+      OnExit = txtQuantExit
+    end
+  end
+end

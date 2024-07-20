@@ -1,0 +1,69 @@
+unit U_compra;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons;
+
+type
+  TfrmCompra = class(TForm)
+    Panel1: TPanel;
+    Image1: TImage;
+    Panel2: TPanel;
+    pnlNome: TPanel;
+    pnlPreco: TPanel;
+    lbNome: TLabel;
+    lbAutor: TLabel;
+    Panel3: TPanel;
+    lbGeneros: TLabel;
+    btnCompra: TPanel;
+    lbPreco: TLabel;
+    Panel4: TPanel;
+    lbEstDisponivel: TLabel;
+    Panel5: TPanel;
+    lbEst: TLabel;
+    lbEstQuantDis: TLabel;
+    pnlVoltar: TPanel;
+    SpeedButton1: TSpeedButton;
+    lbEditora: TLabel;
+    Label1: TLabel;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+    nomeImg, id, preco, autor, gens, estoque, editora: string;
+  end;
+
+var
+  frmCompra: TfrmCompra;
+
+implementation
+
+{$R *.dfm}
+
+uses U_func, U_DM, U_home;
+
+procedure TfrmCompra.FormShow(Sender: TObject);
+begin
+  lbNome.Caption := nomeImg;
+  lbAutor.Caption := 'Criado por '+autor;
+  lbEditora.Caption := 'Editora '+editora;
+  lbGeneros.Caption := gens;
+  if StrToInt(estoque) > 0 then
+  begin
+    lbEstDisponivel.Caption := 'ESTOQUE DISPONÍVEL';
+  end
+  else
+  begin
+    lbEstDisponivel.Caption := 'SEM ESTOQUE';
+  end;
+  lbEst.Caption := estoque;
+  lbPreco.Caption := Format('R$%.2f', [StrToFloat(preco)]);
+
+  Image1.Picture.LoadFromFile(GetDiretorio() + '\imagens\manga\' + id + renameImage() + '.jpg')
+end;
+
+end.

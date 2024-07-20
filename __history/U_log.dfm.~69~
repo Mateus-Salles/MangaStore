@@ -1,0 +1,212 @@
+object frmLogin: TfrmLogin
+  Left = 340
+  Top = 179
+  BorderStyle = bsSingle
+  Caption = 'Log in'
+  ClientHeight = 442
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesigned
+  ScreenSnap = True
+  ShowHint = False
+  Visible = True
+  OnClose = FormClose
+  OnShow = FormShow
+  TextHeight = 21
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 442
+    Align = alClient
+    Color = 2827555
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 3487029
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    ExplicitWidth = 624
+    ExplicitHeight = 441
+    object lbEsqSenha: TLabel
+      Left = 249
+      Top = 287
+      Width = 105
+      Height = 17
+      Caption = 'Esqueceu a Senha'
+      Color = 2893348
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15395562
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbNConta: TLabel
+      Left = 184
+      Top = 384
+      Width = 162
+      Height = 21
+      Caption = 'N'#227'o possui uma conta?'
+      Color = 2893348
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15395562
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object lbCadastro: TLabel
+      Left = 352
+      Top = 384
+      Width = 82
+      Height = 21
+      Caption = 'Cadastre-se'
+      Color = 2959141
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 2192884
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      OnClick = lbCadastroClick
+    end
+    object Panel3: TPanel
+      Left = 136
+      Top = 80
+      Width = 345
+      Height = 57
+      BevelEdges = [beBottom]
+      BevelOuter = bvNone
+      TabOrder = 0
+      object lbEmail: TLabel
+        Left = 0
+        Top = 0
+        Width = 345
+        Height = 21
+        Align = alTop
+        Caption = 'Digite seu Email'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 15527148
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Layout = tlCenter
+        ExplicitWidth = 124
+      end
+      object Panel4: TPanel
+        Left = 0
+        Top = 24
+        Width = 345
+        Height = 30
+        BevelOuter = bvNone
+        Color = 8816262
+        ParentBackground = False
+        TabOrder = 0
+        object txtEmail: TEdit
+          Left = 0
+          Top = 0
+          Width = 345
+          Height = 30
+          Align = alClient
+          BiDiMode = bdLeftToRight
+          BorderStyle = bsNone
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 2368548
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentBiDiMode = False
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+    end
+    object Panel2: TPanel
+      Left = 136
+      Top = 160
+      Width = 345
+      Height = 57
+      BevelEdges = [beBottom]
+      BevelOuter = bvNone
+      TabOrder = 1
+      object lbSenha: TLabel
+        Left = 0
+        Top = 0
+        Width = 345
+        Height = 21
+        Align = alTop
+        Caption = 'Digite sua Senha'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 15527148
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Layout = tlCenter
+        ExplicitWidth = 128
+      end
+      object txtSenha: TEdit
+        Left = 0
+        Top = 21
+        Width = 345
+        Height = 30
+        Align = alTop
+        BiDiMode = bdLeftToRight
+        BorderStyle = bsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 2368548
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBiDiMode = False
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object pblButton: TPanel
+      Left = 210
+      Top = 240
+      Width = 185
+      Height = 41
+      BevelOuter = bvNone
+      Color = 2192884
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 2192884
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 2
+      object btnEntrar: TSpeedButton
+        Left = 0
+        Top = 0
+        Width = 185
+        Height = 41
+        Align = alClient
+        Caption = 'Entrar'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnEntrarClick
+        ExplicitTop = 8
+      end
+    end
+  end
+end

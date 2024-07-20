@@ -1,0 +1,23 @@
+program VendaMangas;
+
+uses
+  Vcl.Forms,
+  U_home in 'U_home.pas' {frmHome},
+  U_func in 'U_func.pas',
+  U_log in 'U_log.pas' {frmLogin},
+  U_DM in 'U_DM.pas' {DM: TDataModule},
+  U_cadManga in 'U_cadManga.pas' {frmCadManga},
+  U_cad in 'U_cad.pas' {frmCadastro};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmHome, frmHome);
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TfrmCadManga, frmCadManga);
+  Application.CreateForm(TfrmCadastro, frmCadastro);
+  Application.Run;
+end.

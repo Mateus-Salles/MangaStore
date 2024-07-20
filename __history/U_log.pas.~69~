@@ -1,0 +1,135 @@
+unit U_log;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, U_func,
+  Vcl.Buttons;
+
+type
+  TfrmLogin = class(TForm)
+    Panel1: TPanel;
+    lbEmail: TLabel;
+    txtEmail: TEdit;
+    Panel3: TPanel;
+    Panel2: TPanel;
+    lbSenha: TLabel;
+    txtSenha: TEdit;
+    pblButton: TPanel;
+    btnEntrar: TSpeedButton;
+    lbEsqSenha: TLabel;
+    lbNConta: TLabel;
+    lbCadastro: TLabel;
+    Panel4: TPanel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure btnEntrarClick(Sender: TObject);
+    procedure lbCadastroClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+
+uses U_home, U_DM, U_cad;
+
+procedure TfrmLogin.btnEntrarClick(Sender: TObject);
+var
+  cot: integer;
+begin
+  DM.sqlCliente.SQL.Text := 'SELECT COUNT(*) FROM cliente WHERE email = :email';
+  DM.sqlCliente.Params.ParamByName('email').AsString := txtEmail.Text;
+  DM.sqlCliente.Open;
+
+  if not ((txtEmail.Text = '') or (txtSenha.Text = '')) then
+  begin
+    if (DM.sqlCliente.Fields[0].AsInteger <= 0) then
+    begin
+      ShowMessage('Email e/ou Senha incorretos');
+    end
+    else
+    begin
+      DM.sqlCliente.SQL.Text := 'select COUNT(*) FROM cliente WHERE senha = :senha';
+      DM.sqlCliente.Params.ParamByName('senha').AsString := txtSenha.Text;
+      DM.sqlCliente.Open;
+
+      if (DM.sqlCliente.Fields[0].AsInteger <= 0) then
+      begin
+        ShowMessage('Email e/ou Senha incorretos');
+      end
+      else
+      begin
+        DM.sqlCliente.SQL.Text := 'select * from cliente';
+
+        DM.sqlCliente.SQL.Text := 'select id_cliente,nome from cliente where email = :email';
+        DM.sqlCliente.Params.ParamByName('email').AsString := txtEmail.Text;
+        DM.sqlCliente.Open;
+
+        try
+          frmHome.imgPerfil.Picture.LoadFromFile(GetDiretorio() + '\imagens\usuario\' + DM.sqlCliente.FieldByName('id_cliente').AsString + DM.sqlCliente.FieldByName('nome').AsString + '.jpg');
+        Except
+          frmHome.imgPerfil.Picture.LoadFromFile(GetDiretorio() + '\imagens\perfil.png');
+        end;
+
+        with frmHome do
+        begin
+          logado := true;
+
+          var tbt: string;
+          tbt := '';
+          var ind: integer;
+          for ind := 1 to Length(DM.sqlCliente.Fields[1].AsString) do
+          begin
+            if (DM.sqlCliente.Fields[1].AsString[ind] = ' ') then
+            begin
+              break;
+            end;
+
+            tbt := tbt + DM.sqlCliente.Fields[1].AsString[ind];
+          end;
+
+          lbNome.Caption := tbt;
+
+        end;
+
+        DM.sqlCliente.SQL.Text := 'select * from cliente';
+
+        frmLogin.Close;
+      end;
+    end;
+
+  end
+  else
+  begin
+    ShowMessage('Preencha os campos em branco');
+  end;
+end;
+
+procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  frmHome.Release;
+  Application.CreateForm(TfrmHome, frmHome);
+  frmHome.ShowModal;
+end;
+
+procedure TfrmLogin.FormShow(Sender: TObject);
+begin
+  txtEmail.Text := '';
+  txtSenha.Text := '';
+end;
+
+procedure TfrmLogin.lbCadastroClick(Sender: TObject);
+begin
+  frmLogin.Visible := false;
+  frmCadastro.ShowModal;
+end;
+
+end.

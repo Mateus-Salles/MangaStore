@@ -1,0 +1,98 @@
+unit U_gen;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, System.StrUtils, System.RegularExpressions;
+
+type
+  TfrmGen = class(TForm)
+    gb1: TGroupBox;
+    cbAcao: TCheckBox;
+    cbAventura: TCheckBox;
+    cbComedia: TCheckBox;
+    cbSciFi: TCheckBox;
+    cbRomance: TCheckBox;
+    cbMisterio: TCheckBox;
+    cbDrama: TCheckBox;
+    cbTerror: TCheckBox;
+    gb2: TGroupBox;
+    pnlSalvar: TPanel;
+    pnlVoltar: TPanel;
+    cbArtM: TCheckBox;
+    cbAvantG: TCheckBox;
+    cbCybP: TCheckBox;
+    cbEsp: TCheckBox;
+    cbFar: TCheckBox;
+    cbFant: TCheckBox;
+    cbJogos: TCheckBox;
+    cbGuerra: TCheckBox;
+    cbHist: TCheckBox;
+    cbParod: TCheckBox;
+    cbSlicOfLife: TCheckBox;
+    cbMusic: TCheckBox;
+    cbPolic: TCheckBox;
+    cbSobNat: TCheckBox;
+    cbNamM: TCheckBox;
+    cbPosAp: TCheckBox;
+    cbSupPod: TCheckBox;
+    cbOpera: TCheckBox;
+    cbPsico: TCheckBox;
+    cbVidaEsc: TCheckBox;
+    gbContSex: TGroupBox;
+    cbEcchi: TCheckBox;
+    cbHarem: TCheckBox;
+    cbHentai: TCheckBox;
+    rgPublicoAlvo: TRadioGroup;
+    procedure pnlSalvarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmGen: TfrmGen;
+
+implementation
+
+{$R *.dfm}
+
+uses U_DM;
+
+procedure TfrmGen.pnlSalvarClick(Sender: TObject);
+var
+  I: integer;
+  gens: string;
+begin
+  gens := '';
+
+  if rgPublicoAlvo.ItemIndex = -1 then
+  begin
+    ShowMessage('Escolha um Público Alvo');
+    Exit;
+  end
+  else
+  begin
+    gens := gens + rgPublicoAlvo.Items[rgPublicoAlvo.ItemIndex] + ', ';
+  end;
+
+  for I := 0 to ComponentCount - 1 do
+  begin
+    if Components[I] is TCheckBox then
+    begin
+      if TCheckBox(Components[I]).Checked then
+      begin
+        gens := gens + TCheckBox(Components[I]).Caption + ', ';
+      end;
+    end;
+  end;
+
+  gens := ReverseString(StringReplace(ReverseString(gens), reverseString(', '), '', []));
+
+  ShowMessage(gens);
+
+end;
+
+end.

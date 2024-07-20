@@ -1,0 +1,601 @@
+object frmHome: TfrmHome
+  Left = 327
+  Top = 166
+  BorderStyle = bsSingle
+  Caption = 'Home'
+  ClientHeight = 442
+  ClientWidth = 652
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWhite
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesktopCenter
+  ShowHint = True
+  Visible = True
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnDeactivate = FormDeactivate
+  OnShow = FormShow
+  DesignSize = (
+    652
+    442)
+  TextHeight = 15
+  object screen: TScrollBox
+    Left = 0
+    Top = 221
+    Width = 652
+    Height = 221
+    HorzScrollBar.Visible = False
+    VertScrollBar.Color = clRed
+    VertScrollBar.ParentColor = False
+    VertScrollBar.Size = 10
+    VertScrollBar.Style = ssFlat
+    Align = alClient
+    BevelInner = bvNone
+    BevelOuter = bvNone
+    BorderStyle = bsNone
+    Color = 2827555
+    ParentColor = False
+    TabOrder = 5
+    OnMouseWheelDown = screenMouseWheelDown
+    OnMouseWheelUp = screenMouseWheelUp
+    ExplicitWidth = 648
+    ExplicitHeight = 220
+    object pnlPop: TPanel
+      Left = 0
+      Top = 6
+      Width = 664
+      Height = 57
+      BevelOuter = bvNone
+      TabOrder = 0
+      object lbPopulares: TLabel
+        Left = 16
+        Top = 1
+        Width = 113
+        Height = 32
+        Caption = 'Populares'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -24
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Layout = tlCenter
+      end
+    end
+  end
+  object pnlNavegacao: TPanel
+    Left = 0
+    Top = 49
+    Width = 652
+    Height = 172
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clBlack
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    Visible = False
+    ExplicitWidth = 648
+    object Panel2: TPanel
+      Left = 0
+      Top = 0
+      Width = 185
+      Height = 172
+      Align = alLeft
+      BevelEdges = [beRight]
+      BevelOuter = bvNone
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Panel3: TPanel
+      Left = 185
+      Top = 0
+      Width = 467
+      Height = 172
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 1
+      ExplicitWidth = 463
+      object lbGenero: TLabel
+        Left = 14
+        Top = 6
+        Width = 43
+        Height = 17
+        Caption = 'G'#234'nero'
+        Color = 14342874
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 22
+        Top = 48
+        Width = 27
+        Height = 15
+        Caption = 'A'#231#227'o'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label3: TLabel
+        Left = 22
+        Top = 82
+        Width = 48
+        Height = 15
+        Caption = 'Aventura'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label4: TLabel
+        Left = 110
+        Top = 48
+        Width = 48
+        Height = 15
+        Caption = 'Com'#233'dia'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label5: TLabel
+        Left = 110
+        Top = 82
+        Width = 50
+        Height = 15
+        Caption = 'Romance'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label6: TLabel
+        Left = 198
+        Top = 48
+        Width = 43
+        Height = 15
+        Caption = 'Mist'#233'rio'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label7: TLabel
+        Left = 198
+        Top = 82
+        Width = 29
+        Height = 15
+        Caption = 'Sci-Fi'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label8: TLabel
+        Left = 275
+        Top = 48
+        Width = 35
+        Height = 15
+        Caption = 'Drama'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label9: TLabel
+        Left = 275
+        Top = 82
+        Width = 30
+        Height = 15
+        Caption = 'Terror'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label10: TLabel
+        Left = 17
+        Top = 135
+        Width = 47
+        Height = 15
+        Caption = 'Shounen'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label11: TLabel
+        Left = 97
+        Top = 135
+        Width = 35
+        Height = 15
+        Caption = 'Seinen'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label12: TLabel
+        Left = 161
+        Top = 135
+        Width = 30
+        Height = 15
+        Caption = 'Sh'#333'jo'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label13: TLabel
+        Left = 217
+        Top = 135
+        Width = 25
+        Height = 15
+        Caption = 'Josei'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object Label14: TLabel
+        Left = 275
+        Top = 135
+        Width = 46
+        Height = 15
+        Caption = 'Kudomo'
+        Color = clBlack
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+    end
+  end
+  object pnlBarra: TPanel
+    Left = 0
+    Top = 0
+    Width = 652
+    Height = 49
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 2827555
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitWidth = 648
+    object pnlLogo: TPanel
+      Left = 0
+      Top = 0
+      Width = 137
+      Height = 49
+      Align = alLeft
+      BevelOuter = bvNone
+      Color = 2893348
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+      OnMouseEnter = pnlLogoMouseEnter
+      OnMouseLeave = pnlLogoMouseLeave
+      object Label1: TLabel
+        Left = 24
+        Top = 13
+        Width = 71
+        Height = 30
+        Alignment = taCenter
+        Caption = 'Aqui '#233' onde ficaria a Logo'
+        WordWrap = True
+        OnMouseEnter = Label1MouseEnter
+        OnMouseLeave = Label1MouseLeave
+      end
+    end
+    object pnlLogin: TPanel
+      Left = 551
+      Top = 0
+      Width = 113
+      Height = 49
+      BevelOuter = bvNone
+      Caption = 'Log in'
+      Color = 2827555
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      OnClick = pnlLoginClick
+      OnMouseEnter = pnlLoginMouseEnter
+      OnMouseLeave = pnlLoginMouseLeave
+    end
+    object pnlUsua: TPanel
+      Left = 551
+      Top = 0
+      Width = 113
+      Height = 49
+      BevelOuter = bvNone
+      Color = 2827555
+      ParentBackground = False
+      TabOrder = 2
+      Visible = False
+      OnClick = pnlUsuaClick
+      OnMouseEnter = pnlUsuaMouseEnter
+      OnMouseLeave = pnlUsuaMouseLeave
+      object lbNome: TLabel
+        Left = 51
+        Top = 12
+        Width = 43
+        Height = 21
+        Align = alCustom
+        Caption = 'Nome'
+        Color = 2303275
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 14342874
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        OnClick = lbNomeClick
+        OnMouseEnter = lbNomeMouseEnter
+      end
+      object pnlImagem: TPanel
+        Left = 0
+        Top = 2
+        Width = 45
+        Height = 45
+        Align = alCustom
+        Color = 2303275
+        ParentBackground = False
+        TabOrder = 0
+        OnMouseEnter = pnlImagemMouseEnter
+        OnMouseLeave = pnlImagemMouseLeave
+        object imgPerfil: TImage
+          Left = 1
+          Top = 1
+          Width = 43
+          Height = 43
+          Align = alClient
+          Center = True
+          OnClick = imgPerfilClick
+          OnMouseEnter = imgPerfilMouseEnter
+          OnMouseLeave = imgPerfilMouseLeave
+          ExplicitLeft = 2
+        end
+      end
+    end
+    object pnlNav: TPanel
+      Left = 137
+      Top = 0
+      Width = 121
+      Height = 49
+      Align = alLeft
+      BevelOuter = bvNone
+      Caption = 'Navegar '#9662
+      Color = 2827555
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 3
+      OnClick = pnlNavClick
+      OnMouseEnter = pnlNavMouseEnter
+      OnMouseLeave = pnlNavMouseLeave
+    end
+  end
+  object btnPopulares: TPanel
+    Left = 26
+    Top = 71
+    Width = 129
+    Height = 41
+    Anchors = []
+    BevelOuter = bvNone
+    Caption = 'Populares'
+    Color = clBlack
+    ParentBackground = False
+    TabOrder = 2
+    Visible = False
+    OnClick = btnPopularesClick
+    OnMouseEnter = btnPopularesMouseEnter
+    OnMouseLeave = btnPopularesMouseLeave
+    ExplicitLeft = 25
+  end
+  object btnNovidades: TPanel
+    Left = 24
+    Top = 118
+    Width = 129
+    Height = 41
+    BevelOuter = bvNone
+    Caption = 'Recentes'
+    Color = clBlack
+    ParentBackground = False
+    TabOrder = 3
+    Visible = False
+    OnClick = btnNovidadesClick
+    OnMouseEnter = btnNovidadesMouseEnter
+    OnMouseLeave = btnNovidadesMouseLeave
+  end
+  object btnAz: TPanel
+    Left = 24
+    Top = 165
+    Width = 129
+    Height = 41
+    BevelOuter = bvNone
+    Caption = 'A-Z'
+    Color = clBlack
+    ParentBackground = False
+    TabOrder = 4
+    Visible = False
+    OnMouseEnter = btnAzMouseEnter
+    OnMouseLeave = btnAzMouseLeave
+  end
+  object pnlOpUsua: TPanel
+    Left = 488
+    Top = 49
+    Width = 164
+    Height = 169
+    Align = alCustom
+    BevelOuter = bvNone
+    Color = clBlack
+    Padding.Left = 4
+    Padding.Top = 4
+    Padding.Right = 4
+    Padding.Bottom = 4
+    ParentBackground = False
+    TabOrder = 6
+    Visible = False
+    object pnlEdit: TPanel
+      Left = 4
+      Top = 4
+      Width = 156
+      Height = 54
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'Editar Perfil'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 0
+      OnClick = pnlEditClick
+      OnMouseEnter = pnlEditMouseEnter
+      OnMouseLeave = pnlEditMouseLeave
+    end
+    object pnlAdManga: TPanel
+      Left = 4
+      Top = 58
+      Width = 156
+      Height = 54
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'Adicionar manga'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      OnClick = pnlAdMangaClick
+      OnMouseEnter = pnlAdMangaMouseEnter
+      OnMouseLeave = pnlAdMangaMouseLeave
+    end
+    object pnlLogOut: TPanel
+      Left = 4
+      Top = 112
+      Width = 156
+      Height = 54
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'Sair'
+      Color = clBlack
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 2
+      OnClick = pnlLogOutClick
+      OnMouseEnter = pnlLogOutMouseEnter
+      OnMouseLeave = pnlLogOutMouseLeave
+    end
+  end
+end

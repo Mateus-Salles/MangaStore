@@ -1,0 +1,87 @@
+unit U_clienteEdit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
+  Vcl.DBCtrls;
+
+type
+  TfrmEditCliente = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Panel1: TPanel;
+    Image1: TImage;
+    btnTrocaImg: TButton;
+    btnEditar: TPanel;
+    btnVoltar: TPanel;
+    Panel2: TPanel;
+    opendialo: TOpenDialog;
+    txtId: TEdit;
+    txtNome: TEdit;
+    txtEndereco: TEdit;
+    txtEmail: TEdit;
+    txtSenha: TEdit;
+    txtTel: TMaskEdit;
+    procedure FormShow(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnTrocaImgClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEditCliente: TfrmEditCliente;
+  hash: string;
+
+implementation
+
+{$R *.dfm}
+
+uses U_home, U_func, U_DM;
+
+procedure TfrmEditCliente.btnTrocaImgClick(Sender: TObject);
+var
+  I: integer;
+begin
+  for I := 0 to DM.sqlCliente.FieldByName('id_cliente').AsInteger do
+  begin
+    hash := hash + '#';
+  end;
+
+  RenameFile(GetDiretorio() + '\imagens\usuario\' + DM.tbCliente.FieldByName('id_cliente').AsString + DM.tbCliente.FieldByName('nome').AsString + '.jpg', GetDiretorio() + '\imagens\usuario\' + hash + '.jpg');
+  resizeImage(Image1, 104, 104, opendialo, true);
+  RenameFile(GetDiretorio() + '\imagens\usuario\' + 'user' + '.jpg', GetDiretorio() + '\imagens\usuario\' + DM.tbCliente.FieldByName('id_cliente').AsString + DM.tbCliente.FieldByName('nome').AsString + '.jpg');
+  hash := '';
+end;
+
+procedure TfrmEditCliente.btnVoltarClick(Sender: TObject);
+begin
+  frmEditCliente.Close;
+end;
+
+procedure TfrmEditCliente.FormShow(Sender: TObject);
+begin
+  DM.sqlCliente.SQL.Text := 'SELECT * FROM cliente WHERE id_cliente = :id';
+  DM.sqlCliente.ParamByName('id').AsInteger := frmHome.idUsua;
+  DM.sqlCliente.Open;
+
+  Image1.Picture.LoadFromFile(frmHome.diret);
+  hash := '';
+
+  txtId.Text := DM.sqlCliente.FieldByName('id_cliente').AsString;
+  txtNome.Text := DM.sqlCliente.FieldByName('nome').AsString;
+  txtEndereco.Text := DM.sqlCliente.FieldByName('endereco').AsString;
+  txtEmail.Text := DM.sqlCliente.FieldByName('email').AsString;
+  txtSenha.Text := DM.sqlCliente.FieldByName('senha').AsString;
+  txtTel.Text := DM.sqlCliente.FieldByName('telefone').AsString;
+end;
+
+end.

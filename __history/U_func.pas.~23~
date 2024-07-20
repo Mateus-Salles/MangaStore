@@ -1,0 +1,87 @@
+unit U_func;
+
+interface
+
+uses
+  Vcl.ExtCtrls, Vcl.Imaging.jpeg, Vcl.Dialogs, Vcl.Graphics, System.Classes, System.SysUtils,
+  U_DM, Vcl.StdCtrls;
+
+  procedure resizeImage(img: TImage; heightL, widthL: integer; OD: TOpenDialog);
+
+implementation
+
+procedure resizeImage(img: TImage; heightL, widthL: integer; OD: TOpenDialog);
+var
+  bmp: TBitmap;
+  jpg: TJPEGImage;
+  scale: Double;
+  pt1, pt2, pt3, pt4: integer;
+  verdd : boolean;
+  SearchRec: TSearchRec;
+begin
+  scale := 0;
+
+  {OD.FileName} ShowMessage(IntToStr(FindFirst(GetCurrentDir + '\imagens\' + DM.sqlManga.FieldByName('titulo').AsString + '.jpg', faAnyFile, SearchRec)));
+
+  //if OD.Execute then
+  //begin
+    try
+      jpg := TJPEGImage.Create;
+      verdd := false;
+
+      try
+        jpg.LoadFromFile(OD.FileName);
+
+        if (jpg.Height >= jpg.Width) AND (HeightL <= jpg.Height) then
+        begin
+          scale := widthL / jpg.Height;
+        end
+        else
+        if (jpg.Height <= jpg.Width) AND (widthL <=  jpg.Width) then
+        begin
+          scale := HeightL / jpg.Width;
+        end
+        else
+        begin
+          verdd := true;
+        end;
+
+        bmp := TBitmap.Create;
+
+        try
+          {Create thumbnail bitmap, keep pictures aspect ratio}
+          bmp.SetSize( widthL,HeightL);
+
+          if not verdd then
+          begin
+            pt1 := (widthL - Round(jpg.Width * scale)) div 2;
+            pt2 := (HeightL - Round(jpg.Height * scale)) div 2;
+            pt3 := Round(jpg.Width * scale) + pt1;
+            pt4 := Round(jpg.Height * scale) + pt2;
+            bmp.Canvas.StretchDraw(Rect(pt1, pt2, pt3, pt4), jpg);
+          end
+          else
+          begin
+            pt1 := (widthL - jpg.Width) div 2;
+            pt2 := (HeightL - jpg.Height) div 2;
+            pt3 := jpg.Width + pt1;
+            pt4 := jpg.Height + pt2;
+            bmp.Canvas.StretchDraw(Rect(pt1, pt2, pt3, pt4), jpg);
+          end;
+
+          img.Picture.Assign(bmp);
+          jpg.Assign(bmp);
+          jpg.SaveToFile(ChangeFileExt(OD.FileName, '.JPG'));
+        finally
+          bmp.free;
+        end;
+      finally
+        jpg.free;
+      end;
+    except
+      showMessage('Erro ao carregar imagem');    ///////////////////////////////////
+    end;
+  //end;
+end;
+
+end.

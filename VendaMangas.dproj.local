@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/06/14 23:05:34.000.014,=C:\Users\casa\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/06/14 23:10:42.000.917,=C:\Users\casa\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2023/06/14 23:27:00.000.145,C:\Users\casa\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\casa\Documents\SistemaGenérico\U_home.pas</Transaction>
+    <Transaction>2023/06/14 23:27:00.000.145,C:\Users\casa\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\casa\Documents\SistemaGenérico\U_home.dfm</Transaction>
+    <Transaction>2023/06/14 23:27:20.000.311,C:\Users\casa\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\casa\Documents\SistemaGenérico\VendaMangas.dproj</Transaction>
+    <Transaction>2023/06/15 18:18:53.000.261,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/15 18:19:08.000.467,C:\Users\casa\Documents\SistemaGenérico\U_func.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/17 01:09:28.000.815,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/17 01:27:01.000.045,C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm=C:\Users\casa\Documents\SistemaGenérico\U_log.dfm</Transaction>
+    <Transaction>2023/06/17 01:27:01.000.045,C:\Users\casa\Documents\SistemaGenérico\Unit1.pas=C:\Users\casa\Documents\SistemaGenérico\U_log.pas</Transaction>
+    <Transaction>2023/06/17 12:34:41.000.332,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/17 13:17:53.000.248,C:\Users\casa\Documents\SistemaGenérico\U_DM.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/06/17 13:17:53.000.248,C:\Users\casa\Documents\SistemaGenérico\U_DM.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/19 16:46:12.000.161,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/19 16:46:27.000.145,C:\Users\casa\Documents\SistemaGenérico\U_cadManga.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/19 16:46:27.000.145,C:\Users\casa\Documents\SistemaGenérico\U_cadManga.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/06/19 16:46:56.000.938,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/19 16:47:05.000.015,C:\Users\casa\Documents\SistemaGenérico\U_cad.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/19 16:47:05.000.015,C:\Users\casa\Documents\SistemaGenérico\U_cad.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/06/26 18:40:01.000.379,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/26 21:31:24.000.664,C:\Users\casa\Documents\SistemaGenérico\U_gen.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/26 21:31:24.000.664,C:\Users\casa\Documents\SistemaGenérico\U_gen.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/06/26 22:49:44.000.484,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/26 22:51:18.000.826,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/06/26 22:52:07.000.126,C:\Users\casa\Documents\SistemaGenérico\U_compra.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/06/26 22:52:07.000.126,C:\Users\casa\Documents\SistemaGenérico\U_compra.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/07/02 14:02:17.000.897,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/07/02 14:03:06.000.911,C:\Users\casa\Documents\SistemaGenérico\U_confirmarCompra.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/07/02 14:03:06.000.911,C:\Users\casa\Documents\SistemaGenérico\U_confirmarCompra.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/07/02 14:48:17.000.670,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/07/02 14:48:59.000.382,C:\Users\casa\Documents\SistemaGenérico\U_cartao.dfm=C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm</Transaction>
+    <Transaction>2023/07/02 14:48:59.000.382,C:\Users\casa\Documents\SistemaGenérico\U_cartao.pas=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/07/02 22:27:27.000.465,=C:\Users\casa\Documents\SistemaGenérico\Unit1.pas</Transaction>
+    <Transaction>2023/07/02 22:28:13.000.344,C:\Users\casa\Documents\SistemaGenérico\Unit1.pas=C:\Users\casa\Documents\SistemaGenérico\U_clienteEdit.pas</Transaction>
+    <Transaction>2023/07/02 22:28:13.000.344,C:\Users\casa\Documents\SistemaGenérico\Unit1.dfm=C:\Users\casa\Documents\SistemaGenérico\U_clienteEdit.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

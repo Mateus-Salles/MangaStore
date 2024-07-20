@@ -1,0 +1,256 @@
+object frmCartao: TfrmCartao
+  Left = 436
+  Top = 262
+  BorderStyle = bsNone
+  Caption = 'Form1'
+  ClientHeight = 311
+  ClientWidth = 441
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Segoe UI'
+  Font.Style = [fsBold]
+  Position = poDesigned
+  TextHeight = 17
+  object lbNumCart: TLabel
+    Left = 67
+    Top = 80
+    Width = 112
+    Height = 17
+    Caption = 'N'#250'mero do cart'#227'o'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbNomeCart: TLabel
+    Left = 80
+    Top = 120
+    Width = 99
+    Height = 17
+    Caption = 'Nome do cart'#227'o'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbData: TLabel
+    Left = 68
+    Top = 160
+    Width = 111
+    Height = 17
+    Caption = 'Data de expira'#231#227'o'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lbCodSeg: TLabel
+    Left = 77
+    Top = 208
+    Width = 102
+    Height = 34
+    Alignment = taRightJustify
+    Caption = 'C'#243'digo de seguran'#231'a (CVV)'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    WordWrap = True
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 441
+    Height = 57
+    Align = alTop
+    Color = 14014937
+    Padding.Left = 15
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 628
+    object Label1: TLabel
+      Left = 16
+      Top = 1
+      Width = 306
+      Height = 55
+      Align = alLeft
+      Caption = 'Adicionar um cart'#227'o de cr'#233'dito'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Layout = tlCenter
+      ExplicitLeft = 8
+      ExplicitTop = 11
+      ExplicitHeight = 30
+    end
+    object Panel2: TPanel
+      Left = 385
+      Top = 1
+      Width = 55
+      Height = 55
+      Align = alRight
+      BevelOuter = bvNone
+      Caption = 'X'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = Panel2Click
+      ExplicitLeft = 584
+    end
+  end
+  object txtNumCart: TEdit
+    Left = 200
+    Top = 77
+    Width = 161
+    Height = 25
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+  end
+  object txtNomCart: TEdit
+    Left = 200
+    Top = 117
+    Width = 161
+    Height = 25
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object cbMes: TComboBox
+    Left = 200
+    Top = 157
+    Width = 49
+    Height = 25
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 3
+    Text = '01'
+    Items.Strings = (
+      '01'
+      '02'
+      '03'
+      '04'
+      '05'
+      '06'
+      '07'
+      '08'
+      '09'
+      '10'
+      '11'
+      '12')
+  end
+  object cbAno: TComboBox
+    Left = 264
+    Top = 157
+    Width = 65
+    Height = 25
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 4
+    Text = '2023'
+    Items.Strings = (
+      '2023'
+      '2024'
+      '2025'
+      '2026'
+      '2027'
+      '2028'
+      '2029'
+      '2030'
+      '2031'
+      '2032'
+      '2033'
+      '2034'
+      '2035'
+      '2036'
+      '2037'
+      '2038'
+      '2039'
+      '2040'
+      '2041'
+      '2042'
+      '2043')
+  end
+  object txtCvv: TEdit
+    Left = 200
+    Top = 205
+    Width = 73
+    Height = 25
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 256
+    Width = 441
+    Height = 55
+    Align = alBottom
+    Color = 14014937
+    ParentBackground = False
+    TabOrder = 6
+    ExplicitTop = 304
+    ExplicitWidth = 616
+    object btnAdc: TPanel
+      Left = 302
+      Top = 11
+      Width = 131
+      Height = 33
+      Caption = 'Adicionar cart'#227'o'
+      Color = 2192884
+      ParentBackground = False
+      TabOrder = 0
+      OnClick = btnAdcClick
+    end
+    object btnCancel: TPanel
+      Left = 192
+      Top = 11
+      Width = 96
+      Height = 33
+      Caption = 'Cancelar'
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 1
+      OnClick = btnCancelClick
+    end
+  end
+end

@@ -1,0 +1,218 @@
+object frmEditCliente: TfrmEditCliente
+  Left = 354
+  Top = 166
+  Caption = 'Editar perfil'
+  ClientHeight = 442
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Segoe UI'
+  Font.Style = [fsBold]
+  Position = poDesigned
+  OnShow = FormShow
+  TextHeight = 21
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 628
+    Height = 442
+    Align = alClient
+    Color = 2827555
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitLeft = 408
+    ExplicitTop = 8
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object Label1: TLabel
+      Left = 144
+      Top = 24
+      Width = 74
+      Height = 21
+      Caption = 'id_cliente'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 144
+      Top = 83
+      Width = 44
+      Height = 21
+      Caption = 'nome'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 24
+      Top = 170
+      Width = 71
+      Height = 21
+      Caption = 'endereco'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 22
+      Top = 247
+      Width = 43
+      Height = 21
+      Caption = 'email'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 408
+      Top = 194
+      Width = 64
+      Height = 21
+      Caption = 'telefone'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 20
+      Top = 319
+      Width = 45
+      Height = 21
+      Caption = 'senha'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 14342874
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object btnEditar: TPanel
+      Left = 392
+      Top = 287
+      Width = 185
+      Height = 50
+      BevelOuter = bvNone
+      Caption = 'Editar'
+      Color = 2192884
+      ParentBackground = False
+      TabOrder = 0
+      OnClick = btnEditarClick
+    end
+    object btnVoltar: TPanel
+      Left = 392
+      Top = 343
+      Width = 185
+      Height = 50
+      BevelOuter = bvNone
+      Caption = 'Voltar'
+      Color = 2192884
+      ParentBackground = False
+      TabOrder = 1
+      OnClick = btnVoltarClick
+    end
+    object Panel1: TPanel
+      Left = 8
+      Top = 28
+      Width = 106
+      Height = 106
+      TabOrder = 2
+      object Image1: TImage
+        Left = 1
+        Top = 1
+        Width = 104
+        Height = 104
+        Align = alClient
+        ExplicitLeft = 8
+        ExplicitTop = 64
+        ExplicitWidth = 105
+        ExplicitHeight = 105
+      end
+    end
+    object txtId: TEdit
+      Left = 144
+      Top = 51
+      Width = 121
+      Height = 29
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      Enabled = False
+      TabOrder = 3
+    end
+    object txtNome: TEdit
+      Left = 144
+      Top = 110
+      Width = 289
+      Height = 29
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      TabOrder = 4
+    end
+    object txtEndereco: TEdit
+      Left = 24
+      Top = 197
+      Width = 289
+      Height = 29
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      TabOrder = 5
+    end
+    object txtEmail: TEdit
+      Left = 22
+      Top = 274
+      Width = 289
+      Height = 29
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      TabOrder = 6
+    end
+    object txtSenha: TEdit
+      Left = 22
+      Top = 346
+      Width = 289
+      Height = 29
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      TabOrder = 7
+    end
+    object txtTel: TMaskEdit
+      Left = 408
+      Top = 221
+      Width = 129
+      Height = 29
+      BevelInner = bvNone
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      EditMask = '(99) 99999-9999;1;_'
+      MaxLength = 15
+      TabOrder = 8
+      Text = '(  )      -    '
+    end
+  end
+  object opendialo: TOpenDialog
+    Left = 504
+    Top = 24
+  end
+end

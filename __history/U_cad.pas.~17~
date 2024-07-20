@@ -1,0 +1,176 @@
+unit U_cad;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.DBCtrls, Vcl.ExtCtrls, U_DM,
+  Vcl.Mask, U_func, Vcl.Buttons;
+
+procedure cadUsua();
+
+type
+  TfrmCadastro = class(TForm)
+    pnlFundo: TPanel;
+    pnlImage: TPanel;
+    Image1: TImage;
+    txtNome: TEdit;
+    lbNome: TLabel;
+    pnlProximo: TPanel;
+    pnlVoltar: TPanel;
+    lbTelefone: TLabel;
+    lbEndereco: TLabel;
+    txtEndereco: TEdit;
+    txtTelefone: TMaskEdit;
+    txtEmail: TEdit;
+    lbEmail: TLabel;
+    lbSenha: TLabel;
+    txtSenha: TEdit;
+    oPD: TOpenDialog;
+    btnProximo: TSpeedButton;
+    btnVoltar: TSpeedButton;
+    btnCarImage: TPanel;
+    procedure pnlProximoClick(Sender: TObject);
+    procedure pnlVoltarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastro: TfrmCadastro;
+  clicado: integer;
+  nome, endereco, email, tel, senha: string;
+
+implementation
+
+{$R *.dfm}
+
+uses U_home, U_log;
+
+procedure TfrmCadastro.pnlProximoClick(Sender: TObject);
+begin
+  case clicado of
+    0:
+    begin
+      if txtNome.Text = '' then
+      begin
+        ShowMessage('Nome em branco');
+        exit;
+      end;
+
+      nome := txtNome.Text;
+      lbNome.Visible := false;
+      txtNome.Visible := false;
+      lbEndereco.Visible := true;
+      lbTelefone.Visible := true;
+      txtEndereco.Visible := true;
+      txtTelefone.Visible := true;
+    end;
+    1:
+    begin
+      if (txtTelefone.Text <> '') and (txtEndereco.Text <> '') then
+      begin
+        endereco := txtEndereco.Text;
+        tel := txtTelefone.Text;
+        lbEndereco.Visible := false;
+        lbTelefone.Visible := false;
+        txtEndereco.Visible := false;
+        txtTelefone.Visible := false;
+        lbEmail.Visible := true;
+        lbSenha.Visible := true;
+        txtEmail.Visible := true;
+        txtSenha.Visible := true;
+      end
+      else if txtTelefone.Text = '' then
+      begin
+        ShowMessage('Telefone em branco');
+        exit;
+      end
+      else
+      begin
+        ShowMessage('Endereço em branco');
+        exit;
+      end;
+    end;
+    2:
+    begin
+      if (txtEmail.Text <> '') and (txtSenha.Text <> '') then
+      begin
+        email := txtEmail.Text;
+        senha := txtSenha.Text;
+        lbEmail.Visible := false;
+        lbSenha.Visible := false;
+        txtEmail.Visible := false;
+        txtSenha.Visible := false;
+        resizeImage(Image1, 104, 104, oPD, true);
+        btnProximo.Caption := 'Enviar';
+      end
+      else if txtEmail.Text = '' then
+      begin
+        ShowMessage('Email em branco');
+        exit;
+      end
+      else
+      begin
+        ShowMessage('Senha em branco');
+        exit;
+      end;
+    end;
+    3:
+    begin
+      try
+        cadUsua();
+        DM.sqlCliente.SQL.Text := 'select id_cliente from cliente where nome=:nome';
+        DM.sqlCliente.Params.ParamByName('nome').AsString := nome;
+        DM.sqlCliente.Open;
+        RenameFile(GetDiretorio() + '\imagens\usuario\' + nome + '.jpg', GetDiretorio() + '\imagens\usuario\' + DM.sqlCliente.Fields[0].AsString + nome + '.jpg');
+      Except
+        ShowMessage('Houve um erro ao renomear a imagem');
+      end;
+    end;
+
+  end;
+end;
+
+procedure TfrmCadastro.pnlVoltarClick(Sender: TObject);
+begin
+  frmCadastro.Visible := false;
+  frmLogin.Visible := true;
+end;
+
+procedure TfrmCadastro.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  frmLogin.Visible := true;
+end;
+
+procedure cadUsua();
+begin
+  with DM.sqlCliente do
+  begin
+    try
+      SQL.Text := 'INSERT INTO cliente(nome, endereco, email, telefone, senha)';
+      SQL.Add('VALUES (:nome, :endereco, :email, :telefone, :senha)');
+
+      Params.ParamByName('nome').AsString := nome;
+      Params.ParamByName('endereco').AsString := endereco;
+      Params.ParamByName('email').AsString := email;
+      Params.ParamByName('telefone').AsString := tel;
+      Params.ParamByName('senha').AsString := senha;
+
+      ExecSQL;
+
+      frmCadastro.Visible := false;
+      frmLogin.Show;
+      frmCadastro.Close;
+    Except
+      ShowMessage('Erro ao cadastrar usuário');
+    end;
+
+    DM.sqlCliente.SQL.Text := 'select * from cliente'
+  end;
+end;
+
+end.

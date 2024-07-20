@@ -1,0 +1,82 @@
+unit U_clienteEdit;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ExtCtrls,
+  Vcl.DBCtrls;
+
+type
+  TfrmEditCliente = class(TForm)
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    Label3: TLabel;
+    DBEdit3: TDBEdit;
+    Label4: TLabel;
+    DBEdit4: TDBEdit;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit6: TDBEdit;
+    Panel1: TPanel;
+    Image1: TImage;
+    btnTrocaImg: TButton;
+    btnEditar: TPanel;
+    btnVoltar: TPanel;
+    Panel2: TPanel;
+    opendialo: TOpenDialog;
+    procedure FormShow(Sender: TObject);
+    procedure btnVoltarClick(Sender: TObject);
+    procedure btnTrocaImgClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEditCliente: TfrmEditCliente;
+  hash: string;
+
+implementation
+
+{$R *.dfm}
+
+uses U_home, U_func, U_DM;
+
+procedure TfrmEditCliente.btnTrocaImgClick(Sender: TObject);
+var
+  I: integer;
+begin
+  for I := 0 to DM.tbCliente.FieldByName('id_cliente').AsInteger do
+  begin
+    hash := hash + '#';
+  end;
+
+  RenameFile(GetDiretorio() + '\imagens\usuario\' + DM.tbCliente.FieldByName('id_cliente').AsString + DM.tbCliente.FieldByName('nome').AsString + '.jpg', GetDiretorio() + '\imagens\usuario\' + hash + '.jpg');
+  resizeImage(Image1, 104, 104, opendialo, true);
+  RenameFile(GetDiretorio() + '\imagens\usuario\' + 'user' + '.jpg', GetDiretorio() + '\imagens\usuario\' + DM.tbCliente.FieldByName('id_cliente').AsString + DM.tbCliente.FieldByName('nome').AsString + '.jpg');
+  hash := '';
+end;
+
+procedure TfrmEditCliente.btnVoltarClick(Sender: TObject);
+begin
+  frmEditCliente.Close;
+end;
+
+procedure TfrmEditCliente.FormShow(Sender: TObject);
+var
+  C:integer;
+begin
+  DM.tbCliente.SQL.Text := 'SELECT * FROM cliente WHERE id_cliente=:id';
+  DM.tbCliente.ParamByName('id').AsInteger := frmHome.idUsua;
+  DM.tbCliente.Open;
+
+  Image1.Picture.LoadFromFile(frmHome.diret);
+  hash := '';
+end;
+
+end.

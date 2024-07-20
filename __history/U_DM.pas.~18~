@@ -1,0 +1,105 @@
+unit U_DM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Phys.MySQLDef, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
+
+type
+  TDM = class(TDataModule)
+    driver: TFDPhysMySQLDriverLink;
+    conexao: TFDConnection;
+    sqlManga: TFDQuery;
+    sqlCliente: TFDQuery;
+    sqlPedido: TFDQuery;
+    sqlClienteid_cliente: TFDAutoIncField;
+    sqlClientenome: TStringField;
+    sqlClienteendereco: TStringField;
+    sqlClienteemail: TStringField;
+    sqlClientetelefone: TStringField;
+    sqlClientesenha: TStringField;
+    dsClient: TDataSource;
+    tbCliente: TFDTable;
+    tbClienteid_cliente: TFDAutoIncField;
+    tbClientenome: TStringField;
+    tbClienteendereco: TStringField;
+    tbClienteemail: TStringField;
+    tbClientetelefone: TStringField;
+    tbClientesenha: TStringField;
+    dsCliente: TDataSource;
+    dsManga: TDataSource;
+    tbManga: TFDTable;
+    tbMangaid_manga: TFDAutoIncField;
+    tbMangatitulo: TStringField;
+    tbMangaautor: TStringField;
+    tbMangagenero: TStringField;
+    tbMangaeditora: TStringField;
+    tbMangaano_publi: TWordField;
+    tbMangapreco: TSingleField;
+    tbMangaestoque: TIntegerField;
+    tbMangadata_cadastro: TDateField;
+    tbPedido: TFDTable;
+    dsPedido: TDataSource;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+  if not (conexao.Params.Database = 'mangastore') then
+  begin
+    conexao.Params.Database := 'mangastore';
+  end;
+  conexao.Params.UserName := 'root';
+  conexao.Params.Password := '';
+
+  if conexao.Connected = False then
+  begin
+    conexao.Connected := True;
+  end;
+
+  driver.VendorLib := GetCurrentDir + '\lib\libmysql.dll';
+
+  if not (tbCliente.TableName = 'cliente') then
+  begin
+    tbCliente.TableName := 'cliente';
+  end;
+  tbCliente.Active := True;
+
+  sqlCliente.Active := True;
+
+  if not (tbManga.TableName = 'mangas') then
+  begin
+    tbManga.TableName := 'mangas';
+  end;
+  tbManga.Active := True;
+
+  sqlManga.Active := True;
+
+  if not (tbPedido.TableName = 'pedido') then
+  begin
+    tbPedido.TableName := 'pedido';
+  end;
+  tbPedido.Active := True;
+
+  sqlPedido.Active := True;
+end;
+
+end.

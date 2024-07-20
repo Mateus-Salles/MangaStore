@@ -1,0 +1,48 @@
+unit U_cartao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmCartao = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel;
+    Panel2: TPanel;
+    lbNumCart: TLabel;
+    txtNumCart: TEdit;
+    Edit1: TEdit;
+    lbNomeCart: TLabel;
+    lbData: TLabel;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    lbCodSeg: TLabel;
+    Edit2: TEdit;
+    Panel3: TPanel;
+    btnAdc: TPanel;
+    btnCancel: TPanel;
+    procedure Panel2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCartao: TfrmCartao;
+
+implementation
+
+{$R *.dfm}
+
+uses U_compra;
+
+procedure TfrmCartao.Panel2Click(Sender: TObject);
+begin
+  frmCompra.ShowModal;
+  frmCartao.Close;
+end;
+
+end.
